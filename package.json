@@ -2,19 +2,20 @@
   "name": "backend",
   "version": "1.0.0",
   "description": "",
-  "main": "middle.mjs",
+  "main": "practice.mjs",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start-dev": "nodemon ./src/middle.mjs",
-    "start": "node ./src/middle.mjs"
+    "start-dev": "nodemon ./src/practice.mjs",
+    "start": "node ./src/practice.mjs"
   },
   "keywords": [],
-
   "author": "",
   "license": "ISC",
-  "type": "module", 
+  "type": "module",
   "dependencies": {
+    "cookie-parser": "^1.4.7",
     "express": "^5.2.1",
+    "express-validator": "^7.3.1",
     "nodemon": "^3.1.13"
   }
 }

@@ -1,29 +1,28 @@
-import express from 'express'
+import express, { Router } from 'express'
+import userRouter from './Router/users.mjs'
+import cookieParser from 'cookie-parser'
 let path=5001
 const app=express()
 
 const datas=[
-    {id:1,name:"pev"},
-    {id:2,name:"cav"},
-    {id:3,name:"bav"}
+    {id:1,name:"pev",age:"20"},
+    {id:2,name:"cav",age:"22"},
+    {id:3,name:"bav",age:"21"}
 ]
+app.use(express.json())
+app.use(userRouter)
+app.use(userRouter)
+app.use(cookieParser("Code io"))
+app.get('/test/', (req, res) => {
 
-//get
-app.get('/',(req,res)=>{
-    res.status(200).send(datas)
-})
-app.get("/api/datas/:id",(req,res)=>{
-   const Did=parseInt(req.params.id)
-   if(isNaN(Did)){
-    return res.status(400).send({msg:"Bad Request "})
-   }
-   const data=datas.find(data=>data.id===Did)
-   if(data){
-       return res.status(200).send(data)
-   }
-   return res.status(404).send({msg:"Data Not Found"})
+    res.cookie("user", "admin", { maxAge: 60000,signed:true });
 
-})
+    res.send({
+        msg: "Root",
+        data: datas 
+    });
+});
+
 //query 
 app.get('/api/datas',(req,res)=>{
     const {query:{dfilter,value}}=req
